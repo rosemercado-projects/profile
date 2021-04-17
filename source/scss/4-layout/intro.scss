@@ -1,0 +1,20 @@
+.intro__wrapper{
+  max-width: 600px;
+  margin:0 auto;
+}
+
+.intro__tagline{
+  line-height:4rem;
+
+  .underline-stroke{
+    text-decoration: none !important;
+    position:relative;
+    &::after{
+       position:absolute;
+       content:url('../files/yellow-underline.svg');
+       top:24px;
+       left:-14px;
+       width:100%;
+    }
+  }
+}

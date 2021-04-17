@@ -1,0 +1,25 @@
+
+.press-success{
+  @include btn-background(color('success'));
+}
+
+.press-danger{
+  @include btn-background(color('danger'));
+}
+
+.press-info{
+  @include btn-background(color('info'));
+}
+
+.press-warning{
+  @include btn-background(color('warning'));
+}
+
+.press-primary{
+  @include btn-background(color('primary'));
+}
+
+.press-large{
+  padding:1.25rem 1.5rem !important;
+  border-radius: 2rem !important;
+}
