@@ -5,8 +5,13 @@
 
 .intro__tagline{
   line-height:4rem;
+  font-weight: 700;
 
-  .underline-stroke{
+  @media only screen and (max-width:800px){
+   line-height:2.75rem;
+  }
+
+  u{
     text-decoration: none !important;
     position:relative;
     &::after{

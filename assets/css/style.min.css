@@ -3542,11 +3542,11 @@ nav {
   justify-content: center;
   align-items: center;
 }
-nav a {
+nav .nav-link {
   font-weight: var(--weight-semibold);
 }
-nav a:hover {
-  color: var(--accent);
+nav .nav-link:hover {
+  color: var(--accent) !important;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -3588,12 +3588,18 @@ nav a:hover {
 
 .intro__tagline {
   line-height: 4rem;
+  font-weight: 700;
 }
-.intro__tagline .underline-stroke {
+@media only screen and (max-width: 800px) {
+  .intro__tagline {
+    line-height: 2.75rem;
+  }
+}
+.intro__tagline u {
   text-decoration: none !important;
   position: relative;
 }
-.intro__tagline .underline-stroke::after {
+.intro__tagline u::after {
   position: absolute;
   content: url("../files/yellow-underline.svg");
   top: 24px;
@@ -3609,6 +3615,12 @@ nav a:hover {
   height: 600px;
   overflow-y: scroll;
   z-index: -1;
+  box-shadow: 0px 3px 18px -5px rgba(0, 0, 0, 0.75);
+}
+@media only screen and (max-width: 800px) {
+  .projects__results {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  }
 }
 @media only screen and (max-width: 480px) {
   .projects__results {
@@ -3693,6 +3705,110 @@ h3 {
 @media only screen and (max-width: 800px) {
   .projects__filter {
     justify-content: space-around;
+  }
+}
+
+.contact__title {
+  font-size: clamp(36px, 4vw, 74px);
+  font-weight: var(--weight-bold);
+}
+
+.sm__list {
+  padding-left: 0;
+  display: flex;
+  margin-top: 40px;
+}
+.sm__list .sm__item:not(:first-child) {
+  margin-left: 10px;
+}
+.sm__list .sm__item .sm__link {
+  background: var(--primary);
+  padding: 6px;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+}
+.sm__list .sm__item .sm__link:hover {
+  background: var(--accent);
+}
+.sm__list .sm__item .sm__link i {
+  color: var(--white);
+  font-size: 1.25rem;
+}
+
+.ci__list {
+  margin-top: 30px;
+}
+.ci__list .ci__item i {
+  font-size: 1.25rem;
+  width: 40px !important;
+}
+.ci__list .ci__item .ci__link {
+  text-decoration: none;
+  font-weight: var(--weight-bold);
+}
+.ci__list .ci__item .ci__link:hover {
+  text-decoration: underline;
+}
+
+.stroke {
+  position: relative;
+  display: inline;
+}
+.stroke::after {
+  position: absolute;
+  content: url("../files/white-underline.svg");
+  top: 52px;
+  left: -14px;
+  width: 100%;
+}
+@media only screen and (max-width: 800px) {
+  .stroke::after {
+    top: 28px;
+  }
+}
+
+.contact__wrapper {
+  height: 800px;
+  max-height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+@media only screen and (max-width: 1200px) {
+  .contact__wrapper {
+    height: 500px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .contact__wrapper {
+    height: 560px;
+  }
+}
+
+.contact__right-sec {
+  position: relative;
+  background: url("../files/yellow-circle.svg") center/contain no-repeat;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 800px) {
+  .contact__right-sec {
+    justify-content: flex-end;
+    margin: 0 20px;
+    height: 80%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .contact__right-sec {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .contact__left-sec {
+    margin-left: 20px;
   }
 }
 
@@ -3874,7 +3990,9 @@ h3 {
 
 .avatar__normal {
   width: 200px;
+  max-width: 100%;
   height: 200px;
+  max-height: 100%;
   display: block;
   margin: 0 auto;
   border-radius: 50%;

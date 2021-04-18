@@ -94,11 +94,11 @@ nav{
   justify-content:center;
   align-items: center;
 
-  a{
+  .nav-link{
     font-weight: var(--weight-semibold);
 
     &:hover{
-      color:var(--accent);
+      color:var(--accent) !important;
     }
   }
 }
