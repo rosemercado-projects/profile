@@ -205,6 +205,14 @@ fieldset {
   padding: 0.35em 0.625em 0.75em;
 }
 
+::-moz-selection {
+  background: var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+}
+
 /* Gets the color from the theme defaults */
 /* Passes in the color thens searches for the Group name called colors
    then map-get the color
@@ -3453,6 +3461,10 @@ footer {
   flex-shrink: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 header {
   background: var(--light);
   padding: 1rem 0;
@@ -3509,10 +3521,8 @@ header {
 
 .header__email-icon {
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
   border: 2px solid var(--accent);
-  padding: 4px;
+  padding: 16px;
   display: inline-block;
   position: relative;
   text-decoration: none !important;
@@ -3531,10 +3541,17 @@ header {
 .header__email-link {
   font-weight: var(--weight-semibold);
   text-decoration: none;
+  margin-left: 20px;
 }
 .header__email-link:hover {
   color: var(--accent) !important;
   transition: all 0.5s ease-in-out;
+}
+@media only screen and (max-width: 800px) {
+  .header__email-link {
+    font-size: 12px;
+    margin-left: 5px;
+  }
 }
 
 nav {
@@ -3615,16 +3632,19 @@ nav .nav-link:hover {
   height: 600px;
   overflow-y: scroll;
   z-index: -1;
-  box-shadow: 0px 3px 18px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0 10px -5px rgba(0, 0, 0, 0.75);
 }
 @media only screen and (max-width: 800px) {
   .projects__results {
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 576px) {
   .projects__results {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 2fr));
+    height: 360px;
+    width: 80vw;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(116px, 2fr));
   }
 }
 
@@ -3635,7 +3655,7 @@ nav .nav-link:hover {
   z-index: 1;
   overflow: hidden;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 576px) {
   .project {
     height: 160px;
   }
@@ -3691,6 +3711,10 @@ h3 {
 .project__option-link {
   text-decoration: none;
 }
+.project__option-link:hover {
+  color: var(--accent) !important;
+  transition: all 0.3s ease-in-out;
+}
 @media only screen and (max-width: 480px) {
   .project__option-link {
     font-size: 0.875rem;
@@ -3705,6 +3729,12 @@ h3 {
 @media only screen and (max-width: 800px) {
   .projects__filter {
     justify-content: space-around;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .project__title {
+    font-size: 14px;
   }
 }
 
@@ -3741,7 +3771,7 @@ h3 {
 }
 .ci__list .ci__item i {
   font-size: 1.25rem;
-  width: 40px !important;
+  width: 30px !important;
 }
 .ci__list .ci__item .ci__link {
   text-decoration: none;
