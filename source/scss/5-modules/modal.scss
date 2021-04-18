@@ -1,17 +1,16 @@
-.modal{
-  background:var(--white);
+.cmodal{
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  max-width: 86%;
-  height: 460px;
-  max-height: 100%;
-   z-index: 14001;
+  width: 94vw;
+  height: 100%;
+  z-index: 14001;
   overflow:hidden;
+  margin-top:30px;
+  margin-bottom:30px;
   
-  .modal-close{
+  .cmodal-close{
     position:absolute;
     top:0;
     right:0;
@@ -20,10 +19,13 @@
     padding:10px;
     z-index: 1002;
     cursor:pointer;
+    >*{
+      color:var(--white);
+    }
  }
 
 
-  .modal-guts{
+  .cmodal-guts{
      /* other stuff we already covered */
 
     /* cover the modal */
@@ -48,23 +50,30 @@
      display:inline-block;
     }
 
-    .modal-content{
-     margin: 20px 30px;
-     width:86%;
+    .cmodal-content{
+     margin: 0 30px 30px 30px;
+     display:flex;
+     justify-content:center;
     }
   }
 }
 
-.modal-overlay{
+.cmodal-img{
+  width:94vw;
+  margin:0 auto;
+}
+
+.cmodal-overlay{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background:rgba(var(--dark-rgb), 0.8);
+  z-index:4000;
 }
 
-.modal--hide{
+.cmodal--hide{
  display:none;
  cursor:pointer;
 }
