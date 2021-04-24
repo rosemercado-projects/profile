@@ -3627,8 +3627,7 @@ nav .nav-link:hover {
 .projects__results {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 600px;
   overflow-y: scroll;
   z-index: -1;
@@ -3636,6 +3635,7 @@ nav .nav-link:hover {
 }
 @media only screen and (max-width: 800px) {
   .projects__results {
+    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
   }
 }
@@ -4087,6 +4087,37 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--accent);
 }
 
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--silver);
+  border-bottom-color: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+  position: absolute;
+  top: 0;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media only screen and (max-width: 1366px) {
   /* Insert code Desktop size here */
 }

@@ -4,8 +4,8 @@
   <ul class="projects__filter d-flex flex-wrap">
 
     {% for project_type in strapi.collections.project-types %}
-      <li class="project__option {% if forloop.index <= 1 %} project__option--current {% endif %}" data-project-type="{{project_type.slug}}">
-        <a href="#" target="_blank" class="project__option-link">{{ project_type.title }}</a>
+      <li class="project__option" data-project-type="{{project_type.slug}}">
+        <a href="#" target="_blank" class="project__option-link {% if forloop.index <= 1 %} project__option--current {% endif %}">{{ project_type.title }}</a>
       </li>
     {% endfor %}
 

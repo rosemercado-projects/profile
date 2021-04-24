@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const portfolio = new Portfolio();
 
-    portfolio.displayResults();
+    portfolio.displayResults('website-design');
   }
 
 

@@ -141,7 +141,7 @@ function isInPage(node) {
 }
 class Portfolio {
   constructor() {
-    this.options = document.querySelectorAll('.portfolio-option');
+    this.options = document.querySelectorAll('.project__option');
     this.UI = new UI();
     this.modal = new Modal();
     this.data = new Data();
@@ -164,7 +164,9 @@ class Portfolio {
 
         /* Loops then prepends newly fetched projects so that new projects stays in the top */
         data.forEach(project => {
-          html = `${this.UI.makeProjectCards(project)} ${html}`;
+         if(project.type_slug == type){
+           html = `${this.UI.makeProjectCards(project)} ${html}`;
+         }
         });
 
         portfolioResultsContainer.innerHTML = html;
@@ -204,13 +206,13 @@ class Portfolio {
         const portfolioResultsContainer = document.querySelector('#portfolioResultsContainer');
 
         /* Removes active class to past selected option */
-        const pastSelectedOption = document.querySelector('.portfolio-link--active');
+        const pastSelectedOption = document.querySelector('.project__option--current');
         if (pastSelectedOption) {
-          pastSelectedOption.classList.remove('portfolio-link--active');
+          pastSelectedOption.classList.remove('project__option--current');
         }
 
         /* Then adds it to the current selected option */
-        e.target.classList.add('portfolio-link--active');
+        e.target.classList.add('project__option--current');
 
         /* Adds a spinner before displaying actual results */
         portfolioResultsContainer.innerHTML = `<span class="spinner"></span>`;
@@ -293,7 +295,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const portfolio = new Portfolio();
 
-    portfolio.displayResults();
+    portfolio.displayResults('website-design');
   }
 
 
