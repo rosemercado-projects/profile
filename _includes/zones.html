@@ -1,0 +1,25 @@
+<!-- These loops over section templates created in Strapi -->
+{% for section in page.section %}
+
+ <!-- Intro template -->
+  {% if section.__component == 'template.intro' %}
+    {% include templates/intro.html %}
+  {% endif %}
+
+<!-- Portfolio template -->
+  {% if section.__component == 'template.portfolio' %}
+   
+    {% if section.visibility %}
+      {% include templates/portfolio.html %}
+    {% endif %}
+
+  {% endif %}
+
+<!-- Contact template -->
+  {% if section.__component == 'template.contact' %}
+     {% if section.visibility %}
+       {% include templates/contact.html %}
+     {% endif %}
+  {% endif %}
+
+{% endfor %}

@@ -2,5 +2,20 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 title: "Rose Gil Mercado" # the name of your site, e.g. ACME Corp.
 
+plugins:  
+  - jekyll-feed
+  - jekyll-strapi
 
 exclude: ["source", "node_modules", "mix-manifest.json", "package-lock.json", "package.json", "webpack.mix.js", ".jekyll-cache"]
+
+strapi:
+  endpoint: https://strapi-rose.herokuapp.com
+  collections:
+    socials:
+      type: socials 
+    project_types:
+      type: project_types
+    pages:
+      type: pages
+    projects:
+      type: projects

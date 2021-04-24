@@ -24,22 +24,26 @@
 
 <body>
   <div id="wrapper">
+    {% assign page = strapi.collections.pages | where:"id", "2" | first %}
+    {% assign info = page.section | where:"__component", "default.info" | first %}
+    {% assign social = info.email.socials | first %}
+    
     <header>
       <div class="container">
         <div class="row">
           <div class="col-6 col-xs-12 d-flex align-items-center">
-            <a href="mailto:rosegilpascomercado@gmail.com" target="_blank" class="header__email-icon">
+            <a href="{{social.url}}" target="_blank" class="header__email-icon">
               <i class="far fa-envelope"></i>
             </a>
-            <a href="mailto:rosegilpascomercado@gmail.com" target="_blank" class="header__email-link d-none d-sm-block">
-              rosegilpascomercado@gmail.com
+            <a href="{{social.url}}" target="_blank" class="header__email-link d-none d-sm-block">
+              {{social.label}}
             </a>
           </div>
 
           <div class="col-6 col-xs-12 d-flex justify-content-end">
             <nav>
               <a href="#" class="nav-link">Works</a>
-              <a href="{{site.baseurl}}/assets/files/cv.pdf" class="nav-link" download>Resume</a>
+              <a href="{{info.resume.url}}" class="nav-link" download>Resume</a>
               <a href="#" class="nav-link">Contact</a>
             </nav>
           </div>

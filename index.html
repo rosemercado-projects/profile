@@ -2,9 +2,12 @@
 layout: default
 ---
 
-{% include templates/intro.html %}
+{% for page in strapi.collections.pages %}
+  {% if page.search_engine_optimization.permalink == '/' %}
+    
+    {% include zones.html %}
 
-{% include templates/portfolio.html %}
+  {% endif %}
+{% endfor %}
 
-{% include templates/contact.html %}
 
