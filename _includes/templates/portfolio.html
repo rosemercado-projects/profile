@@ -1,10 +1,10 @@
 
 <!-- Row Portfolio -->
-<div class="container mt-60">
+<div class="container mt-60 portfolio__container">
   <ul class="projects__filter d-flex flex-wrap">
 
     {% for project_type in strapi.collections.project-types %}
-      <li class="project__option {% if forloop.index <= 1 %} project__option--current {% endif %}" data-project-type="">
+      <li class="project__option {% if forloop.index <= 1 %} project__option--current {% endif %}" data-project-type="{{project_type.slug}}">
         <a href="#" target="_blank" class="project__option-link">{{ project_type.title }}</a>
       </li>
     {% endfor %}
@@ -12,105 +12,9 @@
   </ul>
 
   <div class="projects__results-container mt-60">
-    <div class="projects__results">
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
-    
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
+    <div class="projects__results" id="portfolioResultsContainer">
+      
 
-      <div class="project">
-        <div class="project-overlay">
-          <div class="project-overlay__info">
-            <h6 class="hex-white text-center project__title">IronSocket - Mobile app UI</h6>
-            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none"><i class="far fa-eye"></i> View</a>
-          </div>
-        </div>
-        <img src="{{site.baseurl}}/assets/files/thumbnail.jpg" alt="Rap Esteva | Samples | {{sample.title}}"
-          title="Rap Esteva | Samples | {{sample.title}}" class="project-img" loading="lazy">
-      </div>
     </div>
   </div>
 </div>

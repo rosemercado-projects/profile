@@ -1,5 +1,227 @@
+class Data {
+  constructor() {
+    this.api = '../../projects.json';
+
+  }
+
+  //Methods
+  async fetchProjects(type) {
+    this.api = `${this.api}`;
+    let response = await fetch(this.api);
+    let data = await response.json();
+
+    return data;
+  }
+
+  /* async fetchSingleProject(id) {
+    this.singleProjectApi = `${this.api}/${id}`;
+    let response = await fetch(this.singleProjectApi);
+    let data = await response.json();
+
+    return data;
+  } */
+
+}
 
 
+
+class Modal {
+  constructor() {
+    this.api = 'https://strapi-rap.herokuapp.com';
+
+    /* Primary Modals */
+    this.modalOverlay = document.querySelector('#cmodalOverlay');
+    this.modal = document.querySelector('#cmodal');
+    this.modalClose = document.querySelector('#cmodalClose');
+    this.modalTitle = document.querySelector('#cmodalTitle');
+    this.modalCategory = document.querySelector('#cmodalCategory');
+    this.modalDescription = document.querySelector('#cmodalDescription');
+    this.gutsVideo = document.querySelector('.cmodal__video-guts');
+    this.gutsImage = document.querySelector('.cmodal-guts');
+
+    this.modalVideo = document.querySelector('.cmodal__video');
+    this.modalImage = document.querySelector('.cmodal-img');
+    /* this.modalDate = document.querySelector('#modalDate');
+    this.modalDesc = document.querySelector('#modalDesc'); */
+
+
+    /* Image Modal */
+/*     this.modalImgOverlay = document.querySelector('#modalImgOverlay');
+    this.modalCloseSecondary = document.querySelector('#modalCloseSecondary');
+    this.modalTypeImg = document.querySelector('.modal__type-img');
+    this.modalTypeImgContainer = document.querySelector('.modal__type-img__container');
+ */
+    this.UI = new UI();
+  }
+
+  //Once modal is opened it fetches the information of the project from an API
+  openModalInfo(project) {
+
+    /* Sets the date format options */
+    //const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    /* Declare the Javascript Date Object */
+   // const date = new Date(project.create_date);
+
+    /* And uses the Intl.dateformat to finalize the date format */
+    /* const createDate = new Intl.DateTimeFormat('en-US', dateOptions).format(date);
+    const technologiesList = this.loopTechnologies(project);
+    const collaboratorsList = this.loopCollaborators(project);
+    const gallery = this.showGalleryImages(project); */
+
+
+    //this.modalTitle.innerHTML = project.name; /* Title */
+    //this.modalDate.innerHTML = createDate; /* Date */
+    //this.modalDesc.innerHTML = project.description; /* Description */
+    //this.modalTech.innerHTML = technologiesList; /* Technologies */
+    //this.collaborators.innerHTML = collaboratorsList; /* Collaborators */
+    //this.modalMainImage.src = `${project.main_image.url}`; /* Image URL */
+    //this.modalMainImage.title = `Rap Esteva - Projects | ${project.name}`; /* Image Title */
+    //this.modalMainImage.alt = `Rap Esteva - Projects | ${project.name}`;  /* Image Alt */
+
+    if (project.preview.ext == '.jpg'){
+      this.gutsVideo.classList.add('cmodal--hide');
+
+      this.modalTitle.innerHTML = project.title;
+      this.modalDescription.innerHTML = project.description;
+      this.modalCategory.innerHTML = project.type;
+      this.modalImage.src = `${project.preview.url}`;
+
+    }else if(project.preview.ext == '.mp4'){
+      this.modalVideo.src = `${project.preview.url}`;
+      this.gutsImage.classList.add('cmodal--hide');
+      this.modal.classList.add('modal__video-height');
+    }
+
+    this.modalOverlay.classList.remove('cmodal--hide');
+    this.modal.classList.remove('cmodal--hide');
+  }
+
+  //Bind Close modal
+  bindCloseModal() {
+    this.modalOverlay.addEventListener('click', (e) => {
+
+      /* Close if clicked is an overlay or Close Button */
+      if (e.target == this.modalOverlay || e.target == this.modalClose) {
+
+        e.preventDefault();
+        this.modalOverlay.classList.add('cmodal--hide');
+        this.modal.classList.add('cmodal--hide');
+        this.modalVideo.src = '';
+
+        this.gutsVideo.classList.remove('cmodal--hide');
+        this.gutsImage.classList.remove('cmodal--hide');
+        this.modal.classList.remove('modal__video-height');
+      }
+    });
+
+    this.modalClose.addEventListener('click', (e) => {
+
+      /* Close if clicked is an overlay or Close Button */
+      if (e.target == this.modalOverlay || e.target == this.modalClose) {
+
+        e.preventDefault();
+        this.modalOverlay.classList.add('cmodal--hide');
+        this.modal.classList.add('cmodal--hide');
+        this.modalVideo.src = '';
+
+        this.gutsVideo.classList.remove('cmodal--hide');
+        this.gutsImage.classList.remove('cmodal--hide');
+        this.modal.classList.remove('modal__video-height');
+      }
+    });
+  }
+
+  
+
+
+}
+function isInPage(node) {
+  return (node === document.body) ? false : document.body.contains(node);
+}
+class Portfolio {
+  constructor() {
+    this.options = document.querySelectorAll('.portfolio-option');
+    this.UI = new UI();
+    this.modal = new Modal();
+    this.data = new Data();
+    /* Autoplay */
+    this.bindClick();
+    this.modal.bindCloseModal();
+  }
+
+  //Methods
+
+  /* Displays the result to the Front End */
+  displayResults(type) {
+    const data = new Data();
+    const portfolioResultsContainer = document.querySelector('#portfolioResultsContainer');
+
+
+    data.fetchProjects(type)
+      .then(data => {
+        let html = ``;
+
+        /* Loops then prepends newly fetched projects so that new projects stays in the top */
+        data.forEach(project => {
+          html = `${this.UI.makeProjectCards(project)} ${html}`;
+        });
+
+        portfolioResultsContainer.innerHTML = html;
+
+        /* Bind a click to each info buttons */
+        const viewButtons = document.querySelectorAll('.viewButton');
+
+        /* Loops over info buttons */
+        viewButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectId = e.target.id;
+
+            /* Fetches one project only */
+            /* Checks if Modal type is info */
+            const singleProject = data.find(element => element.id === projectId);
+            this.modal.openModalInfo(singleProject);
+
+
+          });
+        });
+        
+
+      })
+      .catch(err => console.log(err));
+
+  }
+
+
+
+
+  /* Binds click events to Filter options */
+  bindClick() {
+    this.options.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const portfolioResultsContainer = document.querySelector('#portfolioResultsContainer');
+
+        /* Removes active class to past selected option */
+        const pastSelectedOption = document.querySelector('.portfolio-link--active');
+        if (pastSelectedOption) {
+          pastSelectedOption.classList.remove('portfolio-link--active');
+        }
+
+        /* Then adds it to the current selected option */
+        e.target.classList.add('portfolio-link--active');
+
+        /* Adds a spinner before displaying actual results */
+        portfolioResultsContainer.innerHTML = `<span class="spinner"></span>`;
+        const projectType = option.dataset.projectType;
+
+        this.displayResults(projectType);
+
+      });
+    });
+  }
+}
 class UI {
   constructor() {
     this.source = 'https://strapi-rap.herokuapp.com';
@@ -9,26 +231,20 @@ class UI {
   makeProjectCards(project) {
     let layout = ``;
 
-    const btnVisit = this.makeBtnVisit(project.url);
-    const btnInfo = this.makeBtnInfo(project);
 
     layout += `
-     <div class="portfolio-result">
-      <div class="portfolio-result__title-wrapper" data-project-id="${project.id}">
-       <h6>${project.name}</h6>
-      </div>
-
-      <div class="portfolio-result__content">
-       <img src="${project.main_image.url}" alt="Rap Esteva | Projects | ${project.name}" title="${project.name}" class="portfolio-result__img" loading="lazy">
-
-       <div class="portfolio-results__overlay">
-        <div class="portfolio-result__options">
-         ${btnVisit}
-         ${btnInfo}
+     <div class="project">
+        <div class="project-overlay">
+          <div class="project-overlay__info">
+            <h6 class="hex-white text-center project__title">${project.title}</h6>
+            <a href="#" target="_blank" class="mt-10 hex-white text-decoration-none viewButton" id="${project.id}">
+            <i class="far fa-eye"></i> View
+            </a>
+          </div>
         </div>
-       </div>
+        <img src="${project.thumbnail}" alt="Rose Gil Mercado - Projects | ${project.preview.caption}"
+          title="Rose Gil Mercado - Projects | ${project.preview.caption}" class="project-img" loading="lazy">
       </div>
-     </div>
     `;
 
 
@@ -36,63 +252,8 @@ class UI {
     return layout;
   }
 
-  /* Creates a technology badge */
-  makeTechBadge(technology) {
-    let layout = '';
 
-    layout = `
-   <div class="tag" style="background: ${technology.color};">
-        <p>${technology.name}</p>
-       </div>
-  `;
-
-    return layout;
-  }
-
-  /* Creates a collaborator markup */
-  makeCollaborator(collaborator) {
-    let layout = '';
-    let infoMarkup = '';
-
-    /* Checks if collaborator has website */
-    if (collaborator.website) {
-      infoMarkup = `
-      <a href="${collaborator.website}" target="_blank" class="modal__collaborator__link">
-        ${collaborator.name}
-        <span class="modal__collaborator__pos">${collaborator.position}</span>
-      </a> 
-    `;
-    } else {
-      infoMarkup = `
-      <span>
-        ${collaborator.name}
-        <span class="modal__collaborator__pos">${collaborator.position}</span>
-      </span>
-    `;
-    }
-
-    /* Finalize layout */
-    layout = `
-    <li class="modal__collaborator__item">
-         <i class="fas fa-user-circle hex-primary"></i>
-         ${infoMarkup}
-      </li>
-  `;
-
-    return layout;
-  }
-
-  makeGallery(imageUrl, name) {
-    let layout = '';
-
-    layout = `
-   <img src="${imageUrl}" alt="Rap Esteva | Projects | ${name}" title="Rap Esteva | Projects | ${name}" class="modal__gallery-image">
-  `;
-
-    return layout;
-  }
-
-  makeBtnVisit(url) {
+  /* makeBtnVisit(url) {
     let layout = '';
 
     if (url) {
@@ -103,7 +264,7 @@ class UI {
 
     return layout;
 
-  }
+  } */
 
   makeBtnInfo(project) {
     let layout = '';
@@ -119,65 +280,24 @@ class UI {
     return layout;
   }
 
-  makeSkillsColumn(type, skills) {
 
-    const children = this.makeSkillsList(skills);
-
-    const parent = `
-   <div class="other-tech__category">
-    <h4 class="hex-dark">${type}</h4>
-    <ul class="other-tech__list mt-20">
-      ${children}
-    </ul>
-  </div>`;
-
-
-
-    return parent;
-  }
-
-  makeSkillsList(skills) {
-    let items = '';
-
-    skills.forEach(skill => {
-      items += `
-      <li class="other-tech__item">${skill.technology}</li>
-    `;
-    });
-
-    return items;
-  }
-
-  makeCertCard(cert) {
-
-    /* Sets the date format options */
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-    /* Declare the Javascript Date Object */
-    const date = new Date(cert.date_received);
-
-    /* And uses the Intl.dateformat to finalize the date format */
-    const dateReceived = new Intl.DateTimeFormat('en-US', dateOptions).format(date);
-
-    let layout = `
-      <div class="award">
-        <div class="award-content">
-          <h4 class="hex-primary award-title">${cert.name}</h4>
-          <h6 class="hex-dark award-organizer mt-10">${cert.organizer}</h6>
-          <h6 class="hex-dark award-date">${dateReceived}</h6>
-       </div>
-       <a href="${cert.link}" target="_blank" class="btn btn-primary pr-lg20">View Certficate</a>
-      </div>
-
-    `;
-
-    return layout;
-  }
 
 }
 
 
-console.log('component file from components folder');
+window.addEventListener('DOMContentLoaded', () => {
+  //const scroll = new Scroll();
+  const portfolioContainer = document.querySelector('.portfolio__container');
+
+  if (isInPage(portfolioContainer)) {
+
+    const portfolio = new Portfolio();
+
+    portfolio.displayResults();
+  }
+
+
+});
 
 let pattern;
 
@@ -189,7 +309,7 @@ const str = 'Hello';
 
 //Log Results
 const result = pattern.exec(str);
-console.log(result);
+/* console.log(result); */
 
 
 /* Function to test if the str passes the pattern. */
@@ -201,7 +321,5 @@ function patternTest(pattern, str){
  }
 }
 
-patternTest(pattern, str);
-console.log('Nav file from misc folder');
+/* patternTest(pattern, str); */
 
-console.log('Slider file from misc folder');
