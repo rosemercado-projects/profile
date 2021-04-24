@@ -1,0 +1,23 @@
+---
+---
+[
+  {% for project in strapi.collections.projects %}
+    {
+      "id": "{{ project.id }}",
+      "title": "{{ project.title | escape }}",
+      "slug": "{{ project.slug }}",
+      "create_date": "{{ project.create_date | date: '%B %-d, %Y'}}",
+      "preview" : [{
+        "url": "{{project.preview.url}}",
+        "ext": "{{project.preview.ext}}",
+        "mime": "{{project.preview.mime}}",
+        "caption": "{{project.preview.caption}}"
+      }],
+      "thumbnail": "{{project.thumbnail.url}}",
+      "type": "{{project.project_type.slug}}",
+      "to_publish": "{{project.to_publish}}",
+      "description": "{{project.description}}"
+    } 
+    {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

@@ -2,24 +2,13 @@
 <!-- Row Portfolio -->
 <div class="container mt-60">
   <ul class="projects__filter d-flex flex-wrap">
-    <li class="project__option project__option--current">
-      <a href="#" target="_blank" class="project__option-link">Website Design</a>
-    </li>
-    <li class="project__option">
-      <a href="#" target="_blank" class="project__option-link">Mobile UI Design</a>
-    </li>
-    <li class="project__option">
-      <a href="#" target="_blank" class="project__option-link">Branding</a>
-    </li>
-    <li class="project__option">
-      <a href="#" target="_blank" class="project__option-link">Logo Design</a>
-    </li>
-    <li class="project__option">
-      <a href="#" target="_blank" class="project__option-link">Social Media Post</a>
-    </li>
-    <li class="project__option">
-      <a href="#" target="_blank" class="project__option-link">Key Visual Illustration</a>
-    </li>
+
+    {% for project_type in strapi.collections.project-types %}
+      <li class="project__option {% if forloop.index <= 1 %} project__option--current {% endif %}" data-project-type="">
+        <a href="#" target="_blank" class="project__option-link">{{ project_type.title }}</a>
+      </li>
+    {% endfor %}
+
   </ul>
 
   <div class="projects__results-container mt-60">
@@ -125,3 +114,6 @@
     </div>
   </div>
 </div>
+
+
+{% include templates/modal.html %}

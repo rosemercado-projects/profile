@@ -13,8 +13,8 @@ strapi:
   collections:
     socials:
       type: socials 
-    project_types:
-      type: project_types
+    project-types:
+      type: project-types
     pages:
       type: pages
     projects:
