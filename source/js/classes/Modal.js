@@ -14,6 +14,7 @@ class Modal {
 
     this.modalVideo = document.querySelector('.cmodal__video');
     this.modalImage = document.querySelector('.cmodal-img');
+    this.body = document.getElementsByTagName('body')[0];
     /* this.modalDate = document.querySelector('#modalDate');
     this.modalDesc = document.querySelector('#modalDesc'); */
 
@@ -38,19 +39,8 @@ class Modal {
 
     /* And uses the Intl.dateformat to finalize the date format */
     /* const createDate = new Intl.DateTimeFormat('en-US', dateOptions).format(date);
-    const technologiesList = this.loopTechnologies(project);
-    const collaboratorsList = this.loopCollaborators(project);
-    const gallery = this.showGalleryImages(project); */
 
-
-    //this.modalTitle.innerHTML = project.name; /* Title */
     //this.modalDate.innerHTML = createDate; /* Date */
-    //this.modalDesc.innerHTML = project.description; /* Description */
-    //this.modalTech.innerHTML = technologiesList; /* Technologies */
-    //this.collaborators.innerHTML = collaboratorsList; /* Collaborators */
-    //this.modalMainImage.src = `${project.main_image.url}`; /* Image URL */
-    //this.modalMainImage.title = `Rap Esteva - Projects | ${project.name}`; /* Image Title */
-    //this.modalMainImage.alt = `Rap Esteva - Projects | ${project.name}`;  /* Image Alt */
 
     if (project.preview.ext == '.jpg'){
       this.gutsVideo.classList.add('cmodal--hide');
@@ -66,6 +56,7 @@ class Modal {
       this.modal.classList.add('modal__video-height');
     }
 
+    this.body.style.overflow = 'hidden';
     this.modalOverlay.classList.remove('cmodal--hide');
     this.modal.classList.remove('cmodal--hide');
   }
@@ -85,6 +76,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
+        this.body.style.overflow = 'auto';
       }
     });
 
@@ -101,6 +93,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
+        this.body.style.overflow = 'auto';
       }
     });
   }

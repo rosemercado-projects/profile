@@ -41,6 +41,7 @@ class Modal {
 
     this.modalVideo = document.querySelector('.cmodal__video');
     this.modalImage = document.querySelector('.cmodal-img');
+    this.body = document.getElementsByTagName('body')[0];
     /* this.modalDate = document.querySelector('#modalDate');
     this.modalDesc = document.querySelector('#modalDesc'); */
 
@@ -65,19 +66,8 @@ class Modal {
 
     /* And uses the Intl.dateformat to finalize the date format */
     /* const createDate = new Intl.DateTimeFormat('en-US', dateOptions).format(date);
-    const technologiesList = this.loopTechnologies(project);
-    const collaboratorsList = this.loopCollaborators(project);
-    const gallery = this.showGalleryImages(project); */
 
-
-    //this.modalTitle.innerHTML = project.name; /* Title */
     //this.modalDate.innerHTML = createDate; /* Date */
-    //this.modalDesc.innerHTML = project.description; /* Description */
-    //this.modalTech.innerHTML = technologiesList; /* Technologies */
-    //this.collaborators.innerHTML = collaboratorsList; /* Collaborators */
-    //this.modalMainImage.src = `${project.main_image.url}`; /* Image URL */
-    //this.modalMainImage.title = `Rap Esteva - Projects | ${project.name}`; /* Image Title */
-    //this.modalMainImage.alt = `Rap Esteva - Projects | ${project.name}`;  /* Image Alt */
 
     if (project.preview.ext == '.jpg'){
       this.gutsVideo.classList.add('cmodal--hide');
@@ -93,6 +83,7 @@ class Modal {
       this.modal.classList.add('modal__video-height');
     }
 
+    this.body.style.overflow = 'hidden';
     this.modalOverlay.classList.remove('cmodal--hide');
     this.modal.classList.remove('cmodal--hide');
   }
@@ -112,6 +103,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
+        this.body.style.overflow = 'auto';
       }
     });
 
@@ -128,6 +120,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
+        this.body.style.overflow = 'auto';
       }
     });
   }
@@ -224,81 +217,6 @@ class Portfolio {
     });
   }
 }
-class Scroll {
-  constructor() {
-
-  }
-
-  //Methods
-  showSkillLevel() {
-    /* const title = document.querySelector('.summary-what__title'); */
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to('.specialty-inner', {
-      scrollTrigger: {
-        trigger: '.summary-what__specialties',
-        toggleActions: "restart none none none"
-      },
-      x: 0,
-      duration: 1.5,
-      stagger: 0.2
-    })
-  }
-
-  showSamples() {
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to('.sample', {
-      scrollTrigger: {
-        trigger: '.sample-projects__title',
-        toggleActions: "restart none none none"
-      },
-      duration: 0.5,
-      stagger: 0.5,
-      scale: 1,
-      ease: "expoScale(0, 1, power2.in)"
-    });
-  }
-
-
-  smoothScroll(target, duration) {
-    //This Function gets the target Section and your desired duration
-    const targetted = document.querySelector(target);
-    const targetPosition = targetted.getBoundingClientRect().top - 100;
-
-    //Gets the window PageY off set and substract by target position
-    //to get the distance
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, startPosition, distance, duration);
-
-      window.scrollTo(0, run);
-
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-  }
-
-}
-
-
-
-
 class UI {
   constructor() {
     this.source = 'https://strapi-rap.herokuapp.com';

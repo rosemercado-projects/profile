@@ -2,18 +2,19 @@
 <html lang="en">
 
 <head>
+
+  {% assign system = strapi.collections.pages | where:"id", "2" | first %}
+  {% assign info = system.section | where:"__component", "default.info" | first %}
+  {% assign social = info.email.socials | first %}
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  {% include seo.html %}
 
-  <meta name="og:title" property="og:title" content="HTML Webpack">
-  <meta name="description" content="Rose Mercado Website">
-  <meta property="og:image" content="#">
-  <meta property="og:url" content="#">
-
-
-  <title>HTML Starter</title>
+  <title>{{ info.site_name }} - {{meta_title}}</title>
 
   <!-- Row Styles -->
   <link rel="stylesheet" href="assets/css/style.min.css">
@@ -24,9 +25,7 @@
 
 <body>
   <div id="wrapper">
-    {% assign page = strapi.collections.pages | where:"id", "2" | first %}
-    {% assign info = page.section | where:"__component", "default.info" | first %}
-    {% assign social = info.email.socials | first %}
+   
     
     <header>
       <div class="container">
