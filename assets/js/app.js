@@ -295,7 +295,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     /* When clicked on Works Nav */
     navWork.addEventListener('click', (e) => {
-
       window.scroll({
         top: projectTypeOptions[0].offsetTop - 150,
         left: 0,
