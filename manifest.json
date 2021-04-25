@@ -1,0 +1,25 @@
+---
+---
+
+{% assign system = strapi.collections.pages | where:"id", "2" | first %}
+{% assign logo = system.section | where:"__component", "default.favicos" | first %}
+
+{
+  "name": "",
+  "short_name": "",
+  "icons": [
+    {
+      "src": "{{logo.favicon_192.url}}",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "{{logo.favicon_512.url}}",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

@@ -1,0 +1,33 @@
+{% assign logo = system.section | where:"__component", "default.favicos" | first %}
+
+<!-- Favicons -->
+
+<!-- Root Directory Only -->
+<!-- Should be placed in the root file!! -->
+<link rel="shortcut icon" sizes="16x16 32x32" href="{{site.url}}/logo-favico.ico">
+
+<!-- Desktop -->
+<link rel="icon" type="image/png" href="{{logo.favicon_16.url}}" sizes="16x16">
+<link rel="icon" type="image/png" href="{{logo.favicon_32.url}}" sizes="32x32">
+<link rel="icon" type="image/png" href="{{logo.favicon_96.url}}" sizes="96x96">
+
+<!-- Safari 9+ -->
+<link rel='mask-icon' href='{{logo.favicon_svg.url}}' color='#ff0000'>
+
+<!-- IOS | Default is 60px -->
+<link rel="apple-touch-icon" sizes="60x60" href="{{logo.favicon_60.url}}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{logo.favicon_76.url}}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{logo.favicon_120.url}}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{logo.favicon_152.url}}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{logo.favicon_180.url}}">
+
+<!-- Android -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- Safari Pinned icon -->
+<link rel="mask-icon" href="{{logo.favicon_svg.url}}" color="white">
+
+<!-- Windows -->
+<meta name="application-name" content="{{info.site_name}} - Graphic Designer">
+<meta name="msapplication-TileImage" content="{{logo.favicon_152.url}}">
+<meta name="msapplication-TileColor" content="#FFFFFF">
