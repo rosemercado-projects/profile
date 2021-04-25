@@ -39,15 +39,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="title" content="{{ info.site_name }} - {{meta_title}}">
 <meta name="description" content="{{ meta_description | strip_html}}">
-
+  
 <!-- Checks if theres an author of the page -->
-{% if page.authors %}
-{% for author in page.authors %}
-<meta name="author" content="{{author.name}}">
-{% endfor %}
-{% else %}
-<meta name="author" content="{{site.owner}}">
-{% endif %}
+<meta name="author" content="{{info.site_author}}">
 
 <!-- Meta OG -->
 <meta property="og:type" content="website">

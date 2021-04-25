@@ -56,7 +56,7 @@ class Modal {
       this.modal.classList.add('modal__video-height');
     }
 
-    this.body.style.overflow = 'hidden';
+    this.body.style.overflowY = 'hidden';
     this.modalOverlay.classList.remove('cmodal--hide');
     this.modal.classList.remove('cmodal--hide');
   }
@@ -76,7 +76,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
-        this.body.style.overflow = 'auto';
+        this.body.style.overflowY = 'auto';
       }
     });
 
@@ -93,7 +93,7 @@ class Modal {
         this.gutsVideo.classList.remove('cmodal--hide');
         this.gutsImage.classList.remove('cmodal--hide');
         this.modal.classList.remove('modal__video-height');
-        this.body.style.overflow = 'auto';
+        this.body.style.overflowY = 'auto';
       }
     });
   }
