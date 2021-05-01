@@ -338,13 +338,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
     /* When clicked on Works Nav */
     navWork.addEventListener('click', (e) => {
-      window.scroll({
-        top: projectTypeOptions[0].offsetTop - 150,
-        left: 0,
-        behavior: 'smooth'
-      });
+
+      const screenWidth = window.innerWidth;
+
+      if(screenWidth > 1024){
+        window.scroll({
+          top: projectTypeOptions[0].offsetTop - 150,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }else{
+        const scroll = new Scroll();
+        e.preventDefault();
+
+        scroll.smoothScroll(".portfolio__container", 1000);
+      }
 
     });
+
 
     /* Automatically displays portfolio results */
     const portfolio = new Portfolio();
@@ -357,16 +368,26 @@ window.addEventListener('DOMContentLoaded', () => {
   if (isInPage(contactContainer)){
 
     const triggers = [navContact, btnContact]
-
+    const screenWidth = window.innerWidth;
     /* Loops over the triggers */
     triggers.forEach(trigger => {
       trigger.addEventListener('click', (e) => {
 
-        window.scroll({
-          top: contactContainer.offsetTop - 150,
-          left: 0,
-          behavior: 'smooth'
-        });
+        if (screenWidth > 1024){
+          window.scroll({
+            top: contactContainer.offsetTop - 150,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }else{
+          const scroll = new Scroll();
+          e.preventDefault();
+
+          scroll.smoothScroll('#contactContainer', 1000);
+        }
+       
+
+       
 
       });
     });
