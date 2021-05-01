@@ -3602,6 +3602,12 @@ nav .nav-link:hover {
   text-align: center;
 }
 
+@media only screen and (max-width: 576px) {
+  .nav-link {
+    font-size: 0.875rem;
+  }
+}
+
 .intro__wrapper {
   max-width: 600px;
   margin: 0 auto;
@@ -3626,6 +3632,10 @@ nav .nav-link:hover {
   top: 24px;
   left: -14px;
   width: 100%;
+}
+
+.intro__description {
+  line-height: 2rem;
 }
 
 .projects__results {
@@ -3727,13 +3737,15 @@ h3 {
 
 .projects__filter {
   padding-left: 0;
-  gap: 0.75rem 1rem;
   justify-content: space-between;
 }
 @media only screen and (max-width: 800px) {
   .projects__filter {
     justify-content: space-around;
   }
+}
+.projects__filter .project__option {
+  padding: 0.25rem 0.5rem;
 }
 
 @media only screen and (max-width: 480px) {
@@ -3772,6 +3784,9 @@ h3 {
 
 .ci__list {
   margin-top: 30px;
+}
+.ci__list .ci__item {
+  margin-top: 10px;
 }
 .ci__list .ci__item i {
   font-size: 1.25rem;

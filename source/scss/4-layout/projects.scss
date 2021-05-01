@@ -97,11 +97,14 @@
 
 .projects__filter{
   padding-left:0;
-  gap:0.75rem 1rem;
   justify-content: space-between;
 
   @media only screen and (max-width:800px){
    justify-content:space-around;
+  }
+
+  .project__option{
+    padding: 0.25rem 0.50rem;
   }
 }
 
